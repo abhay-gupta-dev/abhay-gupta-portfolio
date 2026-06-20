@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title !== 'undefined' ? title : 'Abhay Gupta Portfolio' %></title>
+
+    <link rel="icon" type="image/png" href="/fevicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Your CSS (only once) -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="main-nav">
+
+            <!-- Top bar — contact links -->
+            <div class="nav-topbar">
+                <a href="mailto:guptaabhay37075@gmail.com" class="nav-contact-link">
+                    <i class="fa-solid fa-envelope"></i> guptaabhay37075@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/abhay-gupta-2097ba392" target="_blank" class="nav-contact-link">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/abhay-gupta-dev" target="_blank" class="nav-contact-link">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a href="https://leetcode.com/u/PGijGpQzsT/" target="_blank" class="nav-contact-link">
+                    <i class="fa-solid fa-code"></i> LeetCode
+                </a>
+            </div>
+
+            <!-- Main navbar -->
+            <div class="nav-main">
+
+                <!-- Logo + Avatar -->
+                <a href="/" class="nav-logo">
+                    <% if (profile && profile.photoUrl) { %>
+                        <img src="<%= profile.photoUrl %>" alt="Abhay" class="nav-avatar" />
+                    <% } else { %>
+                        <div class="logo-circle">AG</div>
+                    <% } %>
+                    <div class="logo-text">
+                        <span class="logo-name">Abhay Gupta</span>
+                        <span class="logo-role">Software Engineer</span>
+                    </div>
+                </a>
+
+                <!-- Nav links -->
+                <ul class="nav-links">
+                    <li><a href="/"         class="<%= typeof title !== 'undefined' && title === 'Home'       ? 'active' : '' %>">Home</a></li>
+                    <li><a href="/about"    class="<%= typeof title !== 'undefined' && title === 'About Me'   ? 'active' : '' %>">About</a></li>
+                    <li><a href="/services" class="<%= typeof title !== 'undefined' && title === 'Services'   ? 'active' : '' %>">Services</a></li>
+                    <li><a href="/projects" class="<%= typeof title !== 'undefined' && title === 'Projects'   ? 'active' : '' %>">Projects</a></li>
+                    <li><a href="/uploads" class="<%= typeof title !== 'undefined' && title === 'Uploads'   ? 'active' : '' %>">Uploads</a></li>
+
+                    <li><a href="/contact"  class="<%= typeof title !== 'undefined' && title === 'Contact Me' ? 'active' : '' %>">Contact Me</a></li>
+                </ul>
+
+                <!-- Hamburger (mobile) -->
+                <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+            </div>
+
+            <!-- Mobile menu -->
+            <div class="nav-mobile" id="mobileMenu">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/contact">Contact Me</a></li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <%- body %>
+
+    <footer class="pf-footer">
+        <div class="pf-top">
+
+            <div class="pf-brand">
+                <% if (profile && profile.photoUrl) { %>
+                    <img src="<%= profile.photoUrl %>" alt="Abhay" class="pf-avatar" />
+                <% } %>
+                <h3>Abhay Gupta</h3>
+                <p>Aspiring Software Engineer & CSE Student passionate about building clean, user-friendly web experiences.</p>
+            </div>
+
+            <div class="pf-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/contact">Contact Me</a></li>
+                </ul>
+            </div>
+
+            <div class="pf-col">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/abhay-gupta-2097ba392" target="_blank" class="pf-social-link">
+                        <span class="pf-social-icon"><i class="fa-brands fa-linkedin"></i></span> LinkedIn
+                    </a>
+                    <a href="https://github.com/abhay-gupta-dev" target="_blank" class="pf-social-link">
+                        <span class="pf-social-icon"><i class="fa-brands fa-github"></i></span> GitHub
+                    </a>
+                    <a href="https://leetcode.com/u/PGijGpQzsT/" target="_blank" class="pf-social-link">
+                        <span class="pf-social-icon"><i class="fa-solid fa-code"></i></span> LeetCode
+                    </a>
+                    <a href="mailto:guptaabhay37075@gmail.com" class="pf-social-link">
+                        <span class="pf-social-icon"><i class="fa-solid fa-envelope"></i></span> Email Me
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="pf-divider" />
+
+        <div class="pf-bottom">
+            <span>© 2026 Abhay Gupta · All Rights Reserved</span>
+            <span>Built with Node.js · EJS · ❤️</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+
+    <!-- Hamburger toggle -->
+    <script>
+        const hamburger   = document.getElementById("hamburger");
+        const mobileMenu  = document.getElementById("mobileMenu");
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("open");
+        });
+    </script>
+
+</body>
+</html>

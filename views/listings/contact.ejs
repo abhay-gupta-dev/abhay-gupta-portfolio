@@ -1,0 +1,90 @@
+<main class="ct-section">
+
+  <div class="ct-header">
+    <p class="ct-eyebrow">Get In Touch</p>
+    <h2 class="ct-title">Contact <span>Me</span></h2>
+    <p class="ct-sub">Have a project in mind or just want to say hi? I'd love to hear from you.</p>
+  </div>
+
+  <div class="ct-grid">
+
+    <!-- Left — contact details -->
+    <div class="ct-info">
+
+      <div class="ct-info-card">
+        <div class="ct-info-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div>
+          <p class="ct-info-label">Email</p>
+          <a href="mailto:guptaabhay37075@gmail.com" class="ct-info-value">guptaabhay37075@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="ct-info-card">
+        <div class="ct-info-icon"><i class="fa-brands fa-linkedin"></i></div>
+        <div>
+          <p class="ct-info-label">LinkedIn</p>
+          <a href="https://www.linkedin.com/in/abhay-gupta-2097ba392" target="_blank" class="ct-info-value">abhay-gupta-2097ba392</a>
+        </div>
+      </div>
+
+      <div class="ct-info-card">
+        <div class="ct-info-icon"><i class="fa-brands fa-github"></i></div>
+        <div>
+          <p class="ct-info-label">GitHub</p>
+          <a href="https://github.com/abhay-gupta-dev" target="_blank" class="ct-info-value">abhay-gupta-dev</a>
+        </div>
+      </div>
+
+      <div class="ct-info-card">
+        <div class="ct-info-icon"><i class="fa-solid fa-code"></i></div>
+        <div>
+          <p class="ct-info-label">LeetCode</p>
+          <a href="https://leetcode.com/u/PGijGpQzsT/" target="_blank" class="ct-info-value">PGijGpQzsT</a>
+        </div>
+      </div>
+
+      <div class="ct-availability">
+        <span class="ct-dot"></span> Available for internships & freelance work
+      </div>
+
+    </div>
+
+    <!-- Right — contact form -->
+    <div class="ct-form-box">
+
+      <% if (success) { %>
+        <div class="ct-success">
+          ✅ Message sent! I'll get back to you soon.
+        </div>
+      <% } %>
+
+      <form action="/contact" method="POST" class="ct-form">
+
+        <div class="ct-form-row">
+          <div class="ct-form-group">
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="Abhay Gupta" required />
+          </div>
+          <div class="ct-form-group">
+            <label>Your Email</label>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+
+        <div class="ct-form-group">
+          <label>Subject</label>
+          <input type="text" name="subject" placeholder="Project idea, internship, collaboration..." />
+        </div>
+
+        <div class="ct-form-group">
+          <label>Message</label>
+          <textarea name="message" rows="5" placeholder="Tell me about your project or just say hi!" required></textarea>
+        </div>
+
+        <button type="submit" class="ct-submit">✉ Send Message</button>
+
+      </form>
+    </div>
+
+  </div>
+</main>

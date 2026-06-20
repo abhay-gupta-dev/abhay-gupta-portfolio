@@ -1,0 +1,108 @@
+<main class="about-section">
+  <div class="about-grid">
+
+    <!-- Left — Photo -->
+    <div class="about-img-wrap">
+      <div class="about-img-box">
+        <% if (profile && profile.photoUrl) { %>
+          <img src="<%= profile.photoUrl %>" alt="Abhay Gupta" />
+        <% } else { %>
+          <div class="about-img-placeholder">
+            <i class="fa-solid fa-user"></i>
+            <p>Upload photo from<br/><a href="/admin">Admin Panel</a></p>
+          </div>
+        <% } %>
+      </div>
+      <span class="about-badge">B.Tech CSE</span>
+    </div>
+
+    <!-- Right — Content -->
+    <div class="about-content">
+      <p class="about-eyebrow">Who I Am</p>
+      <h1 class="about-title">Hey, I'm <span>Abhay Gupta</span> 👋</h1>
+
+      <p class="about-para">
+        A passionate <span class="hl">Computer Science & Engineering</span> student
+        with a strong drive for building modern web applications and solving
+        real-world problems through code.
+      </p>
+      <p class="about-para">
+        Currently sharpening my skills in
+        <span class="hl">Data Structures & Algorithms</span> and
+        <span class="hl">Full Stack Web Development</span> to prepare for
+        impactful software engineering roles.
+      </p>
+      <p class="about-para">
+        I enjoy turning ideas into clean, functional products — from writing
+        efficient algorithms to crafting smooth user interfaces.
+      </p>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-num">5+</div>
+          <div class="stat-lbl">Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">200+</div>
+          <div class="stat-lbl">DSA Problems</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2+</div>
+          <div class="stat-lbl">Years Coding</div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <p class="skills-heading">Tech Stack</p>
+      <div class="skills-tags">
+        <span class="skill-tag"><i class="fa-brands fa-java"></i> Java</span>
+        <span class="skill-tag"><i class="fa-solid fa-code"></i> DSA</span>
+        <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML</span>
+        <span class="skill-tag"><i class="fa-brands fa-css3-alt"></i> CSS</span>
+        <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
+        <span class="skill-tag"><i class="fa-brands fa-node-js"></i> Node.js</span>
+        <span class="skill-tag"><i class="fa-solid fa-server"></i> Express.js</span>
+        <span class="skill-tag"><i class="fa-solid fa-file-code"></i> EJS</span>
+        <span class="skill-tag"><i class="fa-solid fa-database"></i> MongoDB</span>
+        <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git & GitHub</span>
+      </div>
+
+      <!-- CTAs -->
+      <div class="about-actions">
+
+        <% if (profile && profile.resumeUrl) { %>
+          <a href="<%= profile.resumeUrl %>" target="_blank" class="btn-primary-ag">
+            <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+          </a>
+        <% } else { %>
+          <a href="/admin" class="btn-primary-ag" style="opacity:0.6;">
+            <i class="fa-solid fa-upload"></i> Resume Not Uploaded Yet
+          </a>
+        <% } %>
+
+        <a href="/contact" class="btn-outline-ag">
+          <i class="fa-solid fa-envelope"></i> Contact Me
+        </a>
+
+      </div>
+
+      <!-- Social links -->
+      <div class="about-socials">
+        <a href="https://github.com/abhay-gupta-dev" target="_blank" class="about-social-link">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/abhay-gupta-2097ba392" target="_blank" class="about-social-link">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="https://leetcode.com/u/PGijGpQzsT/" target="_blank" class="about-social-link">
+          <i class="fa-solid fa-code"></i>
+        </a>
+        <a href="mailto:guptaabhay37075@gmail.com" class="about-social-link">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</main>

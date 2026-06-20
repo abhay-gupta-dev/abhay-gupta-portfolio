@@ -1,0 +1,49 @@
+<main class="pj-section">
+
+  <div class="pj-header">
+    <p class="pj-eyebrow">What I've Built</p>
+    <h2 class="pj-title">My <span>Projects</span></h2>
+    <p class="pj-sub">A collection of things I've built — from full-stack apps to problem-solving tools.</p>
+  </div>
+
+  <div class="pj-grid">
+    <% if (projects.length === 0) { %>
+      <div class="pj-empty">No projects found. Add some via seed.js!</div>
+    <% } %>
+
+    <% projects.forEach(project => { %>
+      <div class="pj-card">
+
+        <div class="pj-thumb">
+          <% if (project.thumbnail && project.thumbnail !== '/images/default.png') { %>
+            <img src="<%= project.thumbnail %>" alt="<%= project.title %>" />
+          <% } else { %>
+            💻
+          <% } %>
+        </div>
+
+        <div class="pj-body">
+          <% if (project.featured) { %>
+            <span class="pj-featured-badge">⭐ Featured</span>
+          <% } %>
+
+          <h3><%= project.title %></h3>
+          <p><%= project.description %></p>
+
+          <div class="pj-tags">
+            <% project.techStack.forEach(tech => { %>
+              <span class="pj-tag"><%= tech %></span>
+            <% }) %>
+          </div>
+
+          <div class="pj-links">
+            <a href="<%= project.liveUrl %>" target="_blank" class="pj-live">Live Demo</a>
+            <a href="<%= project.githubUrl %>" target="_blank" class="pj-gh">GitHub</a>
+          </div>
+        </div>
+
+      </div>
+    <% }) %>
+  </div>
+
+</main>

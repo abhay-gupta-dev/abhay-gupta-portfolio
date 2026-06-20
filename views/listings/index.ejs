@@ -1,0 +1,27 @@
+<main>
+    <section class="firstsection">
+        <div class="leftsection">
+            <p class="hero-eyebrow">👋 Welcome to my portfolio</p>
+            <h1>Hii, My name is <span class="purple">Abhay</span></h1>
+            <div class="hero-typewriter"><span id="element"></span></div>
+
+            <!-- This is exactly where the code replaces your old buttons -->
+            <div class="hero-actions">
+                <% if (profile && profile.resumeUrl) { %>
+                    <!-- Pointing to your clean internal route -->
+                    <a href="/resume" class="btn-resume-primary">
+                        📄 View Resume
+                    </a>
+                    <a href="<%= profile.resumeUrl %>" download class="btn-resume-outline">
+                        ⬇ Download
+                    </a>
+                <% } %>
+                <a href="/contact" class="btn-resume-outline">Hire Me</a>
+            </div>
+        </div>
+
+        <div class="rightsection">
+            <img src="/logo2.png" alt="Abhay Gupta">
+        </div>
+    </section>
+</main>

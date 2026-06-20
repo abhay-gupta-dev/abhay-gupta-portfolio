@@ -1,0 +1,51 @@
+<main class="admin-wrap">
+  <h1 class="admin-title">Admin <span>Dashboard</span></h1>
+
+  <!-- Upload Section -->
+  <div class="admin-upload-grid">
+
+    <!-- Photo Upload -->
+    <div class="admin-form-box">
+      <h2>📸 Profile Photo</h2>
+      <% if (profile && profile.photoUrl) { %>
+        <img src="<%= profile.photoUrl %>" alt="Profile" class="admin-photo-preview" />
+      <% } else { %>
+        <div class="admin-no-photo">No photo uploaded yet</div>
+      <% } %>
+      <form action="/admin/upload/photo" method="POST" enctype="multipart/form-data" class="admin-form" style="margin-top:1rem;">
+        <div class="ct-form-group">
+          <label>Choose Photo (JPG, PNG, WEBP)</label>
+          <input type="file" name="photo" accept="image/*" required />
+        </div>
+        <button type="submit" class="btn-admin-submit">⬆ Upload Photo</button>
+      </form>
+    </div>
+
+    <!-- Resume Upload -->
+    <div class="admin-form-box">
+      <h2>📄 Resume</h2>
+      <% if (profile && profile.resumeUrl) { %>
+        <a href="<%= profile.resumeUrl %>" target="_blank" class="ct-info-value">✅ Resume uploaded — click to view</a>
+      <% } else { %>
+        <div class="admin-no-photo">No resume uploaded yet</div>
+      <% } %>
+      <form action="/admin/upload/resume" method="POST" enctype="multipart/form-data" class="admin-form" style="margin-top:1rem;">
+        <div class="ct-form-group">
+          <label>Choose Resume (PDF only)</label>
+          <input type="file" name="resume" accept=".pdf" required />
+        </div>
+        <button type="submit" class="btn-admin-submit">⬆ Upload Resume</button>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- Nav Cards -->
+  <div class="admin-cards">
+    <a href="/admin/projects" class="admin-card">
+      <div class="admin-icon">💼</div>
+      <h3>Manage Projects</h3>
+      <p>Add, view, or delete your projects</p>
+    </a>
+  </div>
+</main>

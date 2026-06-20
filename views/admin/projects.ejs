@@ -1,0 +1,84 @@
+<main class="admin-wrap">
+  <h1 class="admin-title">Manage <span>Projects</span></h1>
+
+  <!-- Add Project Form -->
+  <div class="admin-form-box">
+    <h2>Add New Project</h2>
+    <form action="/admin/projects/add" method="POST" enctype="multipart/form-data" class="admin-form">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Project Title *</label>
+          <input type="text" name="title" placeholder="e.g. Wanderlust" required />
+        </div>
+      <div class="form-group">
+  <label>Project Thumbnail</label>
+  <input type="file" name="thumbnail" accept="image/*" />
+</div>
+      </div>
+
+      <div class="form-group">
+        <label>Description *</label>
+        <textarea name="description" rows="3" placeholder="What does this project do?" required></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tech Stack *</label>
+          <input type="text" name="techStack" placeholder="Node.js, Express.js, MongoDB" required />
+          <small>Comma separated</small>
+        </div>
+        <div class="form-group">
+          <label>Live URL</label>
+          <input type="text" name="liveUrl" placeholder="https://your-live-url.com" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>GitHub URL</label>
+          <input type="text" name="githubUrl" placeholder="https://github.com/abhay-gupta-dev/..." />
+        </div>
+        <div class="form-group featured-check">
+          <label>
+            <input type="checkbox" name="featured" />
+            Mark as Featured
+          </label>
+          <small>Featured projects show on the home page</small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-admin-submit">➕ Add Project</button>
+    </form>
+  </div>
+
+  <!-- Existing Projects -->
+  <div class="admin-project-list">
+    <h2>Existing Projects (<%= projects.length %>)</h2>
+
+    <% if (projects.length === 0) { %>
+      <p class="admin-empty">No projects yet. Add one above!</p>
+    <% } %>
+
+    <% projects.forEach(project => { %>
+      <div class="admin-project-row">
+        <div class="admin-project-info">
+          <h3><%= project.title %> <% if (project.featured) { %><span class="admin-badge">⭐ Featured</span><% } %></h3>
+          <p><%= project.description.substring(0, 80) %>...</p>
+          <div class="pj-tags">
+            <% project.techStack.forEach(tech => { %>
+              <span class="pj-tag"><%= tech %></span>
+            <% }) %>
+          </div>
+        </div>
+        <div class="admin-project-actions">
+          <a href="<%= project.liveUrl %>" target="_blank" class="btn-view">🔗 Live</a>
+          <a href="<%= project.githubUrl %>" target="_blank" class="btn-view">⭐ GitHub</a>
+          <form action="/admin/projects/delete/<%= project._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Delete this project?')">
+            <button type="submit" class="btn-delete">🗑 Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</main>
