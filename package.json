@@ -4,13 +4,11 @@
   "description": "",
   "main": "app.js",
   "type": "commonjs",
-
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-
   "dependencies": {
     "cloudinary": "^1.41.3",
     "dotenv": "^17.4.2",
@@ -21,18 +19,15 @@
     "mongoose": "^9.7.0",
     "multer": "^2.2.0",
     "multer-storage-cloudinary": "^4.0.0",
-    "nodemailer": "^7.0.5"
+    "nodemailer": "^6.9.16"
   },
-
   "devDependencies": {
     "nodemon": "^3.1.14"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abhay-gupta-dev/abhay-gupta-portfolio.git"
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
