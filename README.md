@@ -6,7 +6,7 @@ Welcome to my personal developer portfolio! This website showcases my projects, 
 
 ## 🌐 Live Demo
 
-**🔗 Portfolio:** https://abhay-gupta-portfolio-1.onrender.com/
+**🔗 Portfolio:** https://abhay-gupta-portfolio.onrender.com/
 
 ---
 
