@@ -19,72 +19,90 @@
     <!-- Right — Content -->
     <div class="about-content">
       <p class="about-eyebrow">Who I Am</p>
-      <h1 class="about-title">Hey, I'm <span>Abhay Gupta</span> 👋</h1>
+      <h1 class="about-title">Hey, I'm <span>Abhay Gupta</span></h1>
 
-      <p class="about-para">
-        A passionate <span class="hl">Computer Science & Engineering</span> student
-        with a strong drive for building modern web applications and solving
-        real-world problems through code.
-      </p>
-      <p class="about-para">
-        Currently sharpening my skills in
-        <span class="hl">Data Structures & Algorithms</span> and
-        <span class="hl">Full Stack Web Development</span> to prepare for
-        impactful software engineering roles.
-      </p>
-      <p class="about-para">
-        I enjoy turning ideas into clean, functional products — from writing
-        efficient algorithms to crafting smooth user interfaces.
-      </p>
+      <!-- Dynamic About Text -->
+      <% if (profile && profile.aboutText && profile.aboutText.trim()) { %>
+        <% profile.aboutText.split('\n').filter(p => p.trim()).forEach(para => { %>
+          <p class="about-para"><%= para %></p>
+        <% }) %>
+      <% } else { %>
+        <p class="about-para">
+          A passionate <span class="hl">Computer Science & Engineering</span> student
+          with a strong drive for building modern web applications and solving
+          real-world problems through code.
+        </p>
+        <p class="about-para">
+          Currently sharpening my skills in
+          <span class="hl">Data Structures & Algorithms</span> and
+          <span class="hl">Full Stack Web Development</span> to prepare for
+          impactful software engineering roles.
+        </p>
+      <% } %>
 
-      <!-- Stats -->
+      <!-- Dynamic Stats -->
       <div class="stats-row">
         <div class="stat-item">
-          <div class="stat-num">5+</div>
+          <div class="stat-num"><%= profile && profile.projectsCount ? profile.projectsCount : '5+' %></div>
           <div class="stat-lbl">Projects</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">200+</div>
+          <div class="stat-num"><%= profile && profile.dsaCount ? profile.dsaCount : '200+' %></div>
           <div class="stat-lbl">DSA Problems</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">2+</div>
+          <div class="stat-num"><%= profile && profile.yearsCount ? profile.yearsCount : '2+' %></div>
           <div class="stat-lbl">Years Coding</div>
         </div>
       </div>
 
-      <!-- Skills -->
+      <!-- Dynamic Tech Stack -->
       <p class="skills-heading">Tech Stack</p>
       <div class="skills-tags">
-        <span class="skill-tag"><i class="fa-brands fa-java"></i> Java</span>
-        <span class="skill-tag"><i class="fa-solid fa-code"></i> DSA</span>
-        <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML</span>
-        <span class="skill-tag"><i class="fa-brands fa-css3-alt"></i> CSS</span>
-        <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
-        <span class="skill-tag"><i class="fa-brands fa-node-js"></i> Node.js</span>
-        <span class="skill-tag"><i class="fa-solid fa-server"></i> Express.js</span>
-        <span class="skill-tag"><i class="fa-solid fa-file-code"></i> EJS</span>
-        <span class="skill-tag"><i class="fa-solid fa-database"></i> MongoDB</span>
-        <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git & GitHub</span>
+        <%
+          const techIcons = {
+            'java':        'fa-brands fa-java',
+            'dsa':         'fa-solid fa-code',
+            'html':        'fa-brands fa-html5',
+            'css':         'fa-brands fa-css3-alt',
+            'javascript':  'fa-brands fa-js',
+            'node.js':     'fa-brands fa-node-js',
+            'express.js':  'fa-solid fa-server',
+            'ejs':         'fa-solid fa-file-code',
+            'mongodb':     'fa-solid fa-database',
+            'git & github':'fa-brands fa-git-alt',
+            'react':       'fa-brands fa-react',
+            'python':      'fa-brands fa-python',
+            'docker':      'fa-brands fa-docker',
+            'aws':         'fa-brands fa-aws',
+          };
+
+          const stack = profile && profile.techStack
+            ? profile.techStack.split(',').map(t => t.trim())
+            : ['Java','DSA','HTML','CSS','JavaScript','Node.js','Express.js','EJS','MongoDB','Git & GitHub'];
+        %>
+        <% stack.forEach(tech => { %>
+          <% const icon = techIcons[tech.toLowerCase()] || 'fa-solid fa-code'; %>
+          <span class="skill-tag">
+            <i class="<%= icon %>"></i> <%= tech %>
+          </span>
+        <% }) %>
       </div>
 
       <!-- CTAs -->
       <div class="about-actions">
-
         <% if (profile && profile.resumeUrl) { %>
-          <a href="<%= profile.resumeUrl %>" target="_blank" class="btn-primary-ag">
-            <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+          <a href="/resume" target="_blank" class="btn-primary-ag">
+            <i class="fa-solid fa-file-arrow-down"></i> View Resume
           </a>
         <% } else { %>
           <a href="/admin" class="btn-primary-ag" style="opacity:0.6;">
             <i class="fa-solid fa-upload"></i> Resume Not Uploaded Yet
           </a>
         <% } %>
-
         <a href="/contact" class="btn-outline-ag">
           <i class="fa-solid fa-envelope"></i> Contact Me
         </a>
-
       </div>
 
       <!-- Social links -->

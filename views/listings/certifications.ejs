@@ -1,0 +1,94 @@
+<main class="cert-section">
+
+  <div class="cert-header">
+    <p class="cert-eyebrow">My Achievements</p>
+    <h2 class="cert-title">Certifi<span>cations</span></h2>
+    <p class="cert-sub">Courses and certifications I've completed to sharpen my skills.</p>
+  </div>
+
+  <div class="cert-grid">
+    <% if (certifications.length === 0) { %>
+      <div class="cert-empty">
+        <div style="font-size:3rem;margin-bottom:1rem;">🏆</div>
+        <h3 style="color:#f0f0ff;margin-bottom:0.5rem;">No certifications yet</h3>
+        <p>Add certifications from the <a href="/admin" style="color:#a78bfa;">admin dashboard</a>.</p>
+      </div>
+    <% } %>
+
+    <% certifications.forEach(cert => { %>
+      <div class="cert-card" onclick="openCert('<%= cert.imageUrl %>', '<%= cert.title %>')">
+
+        <!-- Certificate Image -->
+        <div class="cert-img-wrap">
+          <% if (cert.imageUrl) { %>
+            <img src="<%= cert.imageUrl %>" alt="<%= cert.title %>" />
+            <div class="cert-zoom-hint">🔍 Click to view</div>
+          <% } else { %>
+            <div class="cert-placeholder">🏆</div>
+          <% } %>
+        </div>
+
+        <!-- Card Body -->
+        <div class="cert-body">
+
+          <!-- Issuer row with logo -->
+          <div class="cert-issuer-row">
+            <div class="cert-org-logo">
+              <%= cert.issuer.charAt(0).toUpperCase() %>
+            </div>
+            <div>
+              <p class="cert-issuer"><%= cert.issuer %></p>
+              <span class="cert-date">
+                <i class="fa-solid fa-calendar-days"></i> <%= cert.date %>
+              </span>
+            </div>
+          </div>
+
+          <h3><%= cert.title %></h3>
+
+          <div class="cert-footer-row">
+            <span class="cert-verified">
+              <i class="fa-solid fa-circle-check"></i> Verified
+            </span>
+            <% if (cert.imageUrl) { %>
+              <span class="cert-view-btn">View Certificate →</span>
+            <% } %>
+          </div>
+
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="cert-modal" id="certModal" onclick="closeCert()">
+    <div class="cert-modal-box" onclick="event.stopPropagation()">
+      <button class="cert-modal-close" onclick="closeCert()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="cert-modal-title" id="certModalTitle"></div>
+      <img id="certModalImg" src="" alt="Certificate" />
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function openCert(imageUrl, title) {
+    if (!imageUrl) return;
+    document.getElementById("certModalImg").src   = imageUrl;
+    document.getElementById("certModalTitle").textContent = title;
+    document.getElementById("certModal").classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeCert() {
+    document.getElementById("certModal").classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  // Close on ESC key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeCert();
+  });
+</script>

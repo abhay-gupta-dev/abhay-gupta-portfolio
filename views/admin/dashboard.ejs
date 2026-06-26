@@ -1,7 +1,6 @@
 <main class="admin-wrap">
   <h1 class="admin-title">Admin <span>Dashboard</span></h1>
 
-  <!-- Upload Section -->
   <div class="admin-upload-grid">
 
     <!-- Photo Upload -->
@@ -21,23 +20,138 @@
       </form>
     </div>
 
-    <!-- Resume Upload -->
+    <!-- Resume Link -->
     <div class="admin-form-box">
       <h2>📄 Resume</h2>
       <% if (profile && profile.resumeUrl) { %>
-        <a href="<%= profile.resumeUrl %>" target="_blank" class="ct-info-value">✅ Resume uploaded — click to view</a>
+        <a href="<%= profile.resumeUrl %>" target="_blank" class="ct-info-value">✅ Resume linked — click to view</a>
       <% } else { %>
-        <div class="admin-no-photo">No resume uploaded yet</div>
+        <div class="admin-no-photo">No resume linked yet</div>
       <% } %>
-      <form action="/admin/upload/resume" method="POST" enctype="multipart/form-data" class="admin-form" style="margin-top:1rem;">
+      <form action="/admin/upload/resume-link" method="POST" class="admin-form" style="margin-top:1rem;">
         <div class="ct-form-group">
-          <label>Choose Resume (PDF only)</label>
-          <input type="file" name="resume" accept=".pdf" required />
+          <label>Paste Google Drive Preview Link</label>
+          <input type="url" name="resumeUrl" placeholder="https://drive.google.com/file/d/.../preview" required
+            value="<%= profile && profile.resumeUrl ? profile.resumeUrl : '' %>" />
         </div>
-        <button type="submit" class="btn-admin-submit">⬆ Upload Resume</button>
+        <button type="submit" class="btn-admin-submit">💾 Save Resume Link</button>
       </form>
     </div>
 
+  </div>
+
+  <!-- About Me Editor -->
+<div class="admin-form-box" style="margin-bottom:1.5rem;">
+  <h2>✏️ Edit About Section</h2>
+  <p style="color:#8890aa;font-size:0.82rem;margin-bottom:1.5rem;">
+    Everything you edit here reflects live on your About page instantly.
+  </p>
+
+  <form action="/admin/about/update" method="POST" class="admin-form">
+
+    <!-- About Text -->
+    <div class="ct-form-group">
+      <label>About Me Text</label>
+      <small style="color:#5a607a;">Each new line = new paragraph on About page</small>
+      <textarea name="aboutText" rows="5" placeholder="Write about yourself..."
+        style="width:100%;margin-top:0.35rem;"><%= profile && profile.aboutText ? profile.aboutText : '' %></textarea>
+    </div>
+
+    <!-- Stats -->
+    <p style="font-size:0.75rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-top:0.5rem;">
+      Stats
+    </p>
+    <div class="ct-form-row">
+      <div class="ct-form-group">
+        <label>Projects Count</label>
+        <input type="text" name="projectsCount"
+          value="<%= profile && profile.projectsCount ? profile.projectsCount : '5+' %>"
+          placeholder="e.g. 5+" />
+      </div>
+      <div class="ct-form-group">
+        <label>DSA Problems Solved</label>
+        <input type="text" name="dsaCount"
+          value="<%= profile && profile.dsaCount ? profile.dsaCount : '200+' %>"
+          placeholder="e.g. 200+" />
+      </div>
+      <div class="ct-form-group">
+        <label>Years Coding</label>
+        <input type="text" name="yearsCount"
+          value="<%= profile && profile.yearsCount ? profile.yearsCount : '2+' %>"
+          placeholder="e.g. 2+" />
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="ct-form-group" style="margin-top:0.5rem;">
+      <label>Tech Stack</label>
+      <small style="color:#5a607a;">Comma separated — e.g. Java, Node.js, MongoDB</small>
+      <input type="text" name="techStack" style="margin-top:0.35rem;"
+        value="<%= profile && profile.techStack ? profile.techStack : 'Java,DSA,HTML,CSS,JavaScript,Node.js,Express.js,EJS,MongoDB,Git & GitHub' %>"
+        placeholder="Java, DSA, HTML, CSS, JavaScript..." />
+    </div>
+
+    <button type="submit" class="btn-admin-submit" style="margin-top:0.5rem;">
+      💾 Save About Section
+    </button>
+
+  </form>
+</div>
+
+  <!-- Add Certification -->
+  <div class="admin-form-box" style="margin-bottom:1.5rem;">
+    <h2>🏆 Add Certification</h2>
+    <form action="/admin/certifications/add" method="POST" enctype="multipart/form-data" class="admin-form">
+      <div class="ct-form-row">
+        <div class="ct-form-group">
+          <label>Certificate Title *</label>
+          <input type="text" name="title" placeholder="e.g. Full Stack Web Development" required />
+        </div>
+        <div class="ct-form-group">
+          <label>Issuer *</label>
+          <input type="text" name="issuer" placeholder="e.g. Udemy, Coursera, NPTEL" required />
+        </div>
+      </div>
+      <div class="ct-form-row">
+        <div class="ct-form-group">
+          <label>Date *</label>
+          <input type="text" name="date" placeholder="e.g. June 2025" required />
+        </div>
+        <div class="ct-form-group">
+          <label>Certificate Image</label>
+          <input type="file" name="certImage" accept="image/*" />
+        </div>
+      </div>
+      <button type="submit" class="btn-admin-submit">➕ Add Certification</button>
+    </form>
+  </div>
+
+  <!-- Existing Certifications -->
+  <div class="admin-form-box" style="margin-bottom:1.5rem;">
+    <h2>🏆 Certifications (<%= typeof certifications !== 'undefined' ? certifications.length : 0 %>)</h2>
+    <% if (typeof certifications !== 'undefined' && certifications.length > 0) { %>
+      <% certifications.forEach(cert => { %>
+        <div class="admin-project-row">
+          <div class="admin-project-info" style="display:flex;align-items:center;gap:1rem;">
+            <% if (cert.imageUrl) { %>
+              <img src="<%= cert.imageUrl %>" alt="<%= cert.title %>"
+                style="width:60px;height:45px;object-fit:cover;border-radius:6px;border:1px solid rgba(124,58,237,0.3);" />
+            <% } else { %>
+              <div style="width:60px;height:45px;background:rgba(124,58,237,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🏆</div>
+            <% } %>
+            <div>
+              <h3 style="font-size:0.9rem;"><%= cert.title %></h3>
+              <p style="font-size:0.78rem;color:#8890aa;"><%= cert.issuer %> · <%= cert.date %></p>
+            </div>
+          </div>
+          <form action="/admin/certifications/delete/<%= cert._id %>" method="POST">
+            <button type="submit" class="btn-delete" onclick="return confirm('Delete this certification?')">🗑 Delete</button>
+          </form>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p class="admin-empty">No certifications added yet.</p>
+    <% } %>
   </div>
 
   <!-- Nav Cards -->
@@ -47,5 +161,11 @@
       <h3>Manage Projects</h3>
       <p>Add, view, or delete your projects</p>
     </a>
+    <a href="/certifications" class="admin-card">
+      <div class="admin-icon">🏆</div>
+      <h3>View Certifications</h3>
+      <p>See how certifications look publicly</p>
+    </a>
   </div>
+
 </main>
