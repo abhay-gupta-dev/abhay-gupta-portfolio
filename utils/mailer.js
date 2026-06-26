@@ -1,33 +1,16 @@
-const nodemailer = require("nodemailer");
-console.log("EMAIL_USER =", process.env.EMAIL_USER);
-console.log("EMAIL_PASS exists =", !!process.env.EMAIL_PASS);
+const { Resend } = require('resend');
 
-
-
-
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
-
-transporter.verify((err, success) => {
-    if (err) {
-        console.error("SMTP VERIFY ERROR:", err);
-    } else {
-        console.log("SMTP READY");
-    }
-});
+// Initialize Resend with your API key from environment variables
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendContactEmail = async ({ name, email, subject, message }) => {
-    const mailOptions = {
-        from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-        to:   process.env.EMAIL_USER,   // sends to yourself
-        replyTo: email,                 // so you can reply directly to the sender
+    await resend.emails.send({
+        // The free tier requires sending FROM 'onboarding@resend.dev'
+        from: 'Portfolio Contact <onboarding@resend.dev>', 
+        // Sends the email TO your personal email
+        to: process.env.EMAIL_USER, 
+        // Allows you to reply directly to the person who filled out the form
+        replyTo: email, 
         subject: `📬 New Message: ${subject || "No Subject"} — from ${name}`,
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 2rem; border-radius: 10px;">
@@ -62,9 +45,7 @@ const sendContactEmail = async ({ name, email, subject, message }) => {
                 </p>
             </div>
         `
-    };
-
-    await transporter.sendMail(mailOptions);
+    });
 };
 
 module.exports = sendContactEmail;

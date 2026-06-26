@@ -402,13 +402,25 @@ app.get("/contact", (req, res) => {
 app.post("/contact", async (req, res) => {
     try {
         const { name, email, subject, message } = req.body;
+        
+        // 1. Save message to MongoDB
         const newMessage = new Contact({ name, email, subject, message });
         await newMessage.save();
+        
+        // 2. Trigger the Resend email function
         await sendContactEmail({ name, email, subject, message });
+        
+        // 3. Render success state back to your EJS view
         res.render("listings/contact", { title: "Contact Me", success: true });
     } catch (err) {
-        console.error("Contact error:", err);
-        res.render("listings/contact", { title: "Contact Me", success: false });
+        // Detailed logging to catch any Resend API or Database issues on Render
+        console.error("❌ CONTACT FORM ERROR:", err.message || err);
+        
+        res.render("listings/contact", { 
+            title: "Contact Me", 
+            success: false, 
+            error: "Something went wrong. Please try again later." 
+        });
     }
 });
 
