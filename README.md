@@ -1,37 +1,151 @@
-# 🚀 Personal Portfolio Website
 
-A modern full-stack portfolio website built with Node.js, Express, MongoDB, and Cloudinary to showcase my projects, skills, resume, and achievements.
+
+# 🚀 Abhay Gupta | Developer Portfolio
+
+Welcome to my personal developer portfolio! This website showcases my projects, technical skills, and journey as a Computer Science student passionate about Full-Stack Development and Data Structures & Algorithms.
+
+## 🌐 Live Demo
+
+**🔗 Portfolio:** https://abhay-gupta-portfolio-1.onrender.com/
+
+---
+
+## 📌 About
+
+This portfolio is designed to provide an overview of my work, experience, and technical expertise. It features my projects, skills, resume, and contact information in a clean and responsive interface.
+
+---
 
 ## ✨ Features
 
-* Responsive UI
-* Project Showcase
-* Resume Upload & View
-* Certificate Management
-* Contact Form
-* Admin Dashboard
-* Cloudinary File Storage
+* Responsive and modern UI
+* Project showcase with descriptions
+* Technical skills section
+* Resume download option
+* Contact form
+* Smooth navigation and animations
+* Mobile-friendly design
+
+---
 
 ## 🛠️ Tech Stack
 
+### Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+* React.js
+* Bootstrap
+
+### Backend
+
 * Node.js
 * Express.js
-* MongoDB
-* EJS
-* Bootstrap
-* Cloudinary
 
-## 🚀 Run Locally
+### Database
+
+* MongoDB
+
+### Other Tools
+
+* Git
+* GitHub
+* Render
+* VS Code
+
+---
+
+## 📂 Projects Included
+
+* 🏡 WanderLust – Full Stack Airbnb-inspired accommodation platform
+* 💼 Personal Portfolio Website
+* 📚 More projects coming soon...
+
+---
+
+## 🚀 Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/your-username/portfolio.git
+```
+
+### Navigate to the project
+
+```bash
+cd portfolio
+```
+
+### Install dependencies
 
 ```bash
 npm install
+```
+
+### Start the development server
+
+```bash
+npm run dev
+```
+
+or (if using Create React App)
+
+```bash
 npm start
 ```
 
-## 👨‍💻 Author
+The application will run locally at:
 
-**Abhay Gupta**
+```
+http://localhost:3000
+```
 
-B.Tech CSE Student | Full Stack Developer
+or
 
-⭐ If you like this project, give it a star!
+```
+http://localhost:5173
+```
+
+(depending on your setup)
+
+---
+
+## 📁 Project Structure
+
+```
+Portfolio/
+│
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── assets/
+│   ├── styles/
+│   └── App.js
+│
+├── package.json
+├── README.md
+└── ...
+```
+
+---
+
+## 📬 Contact
+
+If you'd like to connect, collaborate, or discuss opportunities, feel free to reach out.
+
+* 📧 Email: [your-email@example.com](mailto:your-email@example.com)
+* 💼 LinkedIn: https://linkedin.com/in/your-profile
+* 💻 GitHub: https://github.com/your-username
+
+---
+
+## ⭐ Support
+
+If you like this project, consider giving it a **⭐ Star** on GitHub. It helps support my work and encourages future improvements.
+
+---
+
+Made with ❤️ by **Abhay Gupta**
