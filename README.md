@@ -130,18 +130,6 @@ Portfolio/
 └── ...
 ```
 
----
-
-## 📬 Contact
-
-If you'd like to connect, collaborate, or discuss opportunities, feel free to reach out.
-
-* 📧 Email: [your-email@example.com](mailto:your-email@example.com)
-* 💼 LinkedIn: https://linkedin.com/in/your-profile
-* 💻 GitHub: https://github.com/your-username
-
----
-
 ## ⭐ Support
 
 If you like this project, consider giving it a **⭐ Star** on GitHub. It helps support my work and encourages future improvements.
