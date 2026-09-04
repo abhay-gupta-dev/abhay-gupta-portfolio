@@ -68,11 +68,11 @@
                     <li><a href="/contact"         class="<%= title === 'Contact Me'       ? 'active' : '' %>">Contact</a></li>
                    <% if (isAdmin) { %>
                     <li>
-        <a href="/admin" class="nav-admin-link">
-            <i class="fa-solid fa-lock"></i> Admin
-        </a>
-    </li>
-<% } %>
+                       <a href="/admin" class="nav-admin-link">
+                       <i class="fa-solid fa-lock"></i> Admin
+                    </a>
+                   </li>
+               <% } %>
                 </ul>
 
                 <!-- Hamburger (mobile) -->
@@ -91,7 +91,14 @@
                     <li><a href="/projects">Projects</a></li>
                     <li><a href="/certifications">Certifications</a></li>
                     <li><a href="/contact">Contact</a></li>
-                    <li><a href="/admin/login"><i class="fa-solid fa-lock"></i> Admin</a></li>
+                    <% if (isAdmin) { %>
+                     <li>
+                    <a href="/admin">
+                       <i class="fa-solid fa-lock"></i> Admin
+                    </a>
+                   </li>
+                   <% } %>
+                   
                 </ul>
             </div>
 
