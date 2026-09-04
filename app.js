@@ -37,6 +37,12 @@ app.use(session({
     cookie:            { maxAge: 1000 * 60 * 60 * 24 }
 }));
 
+// ── Make Admin Status Available to EJS ──
+app.use((req, res, next) => {
+    res.locals.isAdmin = req.session.isAdmin || false;
+    next();
+});
+
 // ── Global Profile Middleware ──
 app.use(async (req, res, next) => {
     try {

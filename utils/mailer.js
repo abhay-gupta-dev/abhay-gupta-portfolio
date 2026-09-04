@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const sendContactEmail = async ({ name, email, subject, message }) => {
     try {
         const data = await resend.emails.send({
-            from: 'Portfolio Contact <onboarding@resend.dev>',
+          from: 'Portfolio Contact <portfolio@resend.dev>',
             to: process.env.EMAIL_USER,
             replyTo: email,
             subject: `📬 New Message: ${subject || "No Subject"} — from ${name}`,

@@ -27,7 +27,7 @@
         <nav class="main-nav">
 
             <!-- Top bar — contact links -->
-            <div class="nav-topbar">
+            <!-- <div class="nav-topbar">
                 <a href="mailto:guptaabhay37075@gmail.com" class="nav-contact-link">
                     <i class="fa-solid fa-envelope"></i> guptaabhay37075@gmail.com
                 </a>
@@ -40,7 +40,7 @@
                 <a href="https://leetcode.com/u/PGijGpQzsT/" target="_blank" class="nav-contact-link">
                     <i class="fa-solid fa-code"></i> LeetCode
                 </a>
-            </div>
+            </div> -->
 
             <!-- Main navbar -->
             <div class="nav-main">
@@ -66,9 +66,13 @@
                     <li><a href="/projects"        class="<%= title === 'Projects'         ? 'active' : '' %>">Projects</a></li>
                     <li><a href="/certifications"  class="<%= title === 'Certifications'   ? 'active' : '' %>">Certifications</a></li>
                     <li><a href="/contact"         class="<%= title === 'Contact Me'       ? 'active' : '' %>">Contact</a></li>
-                    <li><a href="/admin/login"     class="nav-admin-link">
-                        <i class="fa-solid fa-lock"></i> Admin
-                    </a></li>
+                   <% if (isAdmin) { %>
+                    <li>
+        <a href="/admin" class="nav-admin-link">
+            <i class="fa-solid fa-lock"></i> Admin
+        </a>
+    </li>
+<% } %>
                 </ul>
 
                 <!-- Hamburger (mobile) -->
@@ -128,10 +132,10 @@
                     <a href="https://github.com/abhay-gupta-dev" target="_blank" class="pf-social-link">
                         <span class="pf-social-icon"><i class="fa-brands fa-github"></i></span> GitHub
                     </a>
-                    <a href="https://leetcode.com/u/PGijGpQzsT/" target="_blank" class="pf-social-link">
+                    <!-- <a href="https://leetcode.com/u/PGijGpQzsT/" target="_blank" class="pf-social-link">
                         <span class="pf-social-icon"><i class="fa-solid fa-code"></i></span> LeetCode
-                    </a>
-                    <a href="mailto:guptaabhay37075@gmail.com" class="pf-social-link">
+                    </a> -->
+                    <a href="mailto:abhaygupta162001@gmail.com" class="pf-social-link">
                         <span class="pf-social-icon"><i class="fa-solid fa-envelope"></i></span> Email Me
                     </a>
                 </div>
