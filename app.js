@@ -202,29 +202,44 @@ app.post("/admin/upload/photo", adminAuth, upload.single("photo"), async (req, r
     }
 });
 
-// ── Save Resume Link ──
-app.post("/admin/upload/resume-link", adminAuth, async (req, res) => {
+// ── Upload Resume ──
+app.post("/admin/upload/resume", adminAuth, upload.single("resume"), async (req, res) => {
     try {
-        let { resumeUrl } = req.body;
+        if (!req.file) return res.redirect("/admin");
 
-        if (resumeUrl.includes("drive.google.com/file/d/")) {
-            const fileId = resumeUrl.match(/\/d\/([a-zA-Z0-9_-]+)/)?.[1];
-            if (fileId) {
-                resumeUrl = `https://drive.google.com/file/d/${fileId}/preview`;
-            }
-        }
+        const allowedResumeTypes = [
+            "application/pdf",
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        ];
+        if (!allowedResumeTypes.includes(req.file.mimetype)) return res.redirect("/admin");
+
+        const result = await new Promise((resolve, reject) => {
+            cloudinary.uploader.upload_stream(
+                {
+                    folder: "portfolio/resumes",
+                    public_id: `resume_${Date.now()}`,
+                    resource_type: "auto"
+                },
+                (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                }
+            ).end(req.file.buffer);
+        });
 
         let profile = await Profile.findOne();
         if (!profile) profile = new Profile();
 
-        profile.resumeUrl = resumeUrl;
+        profile.resumeUrl = result.secure_url;
         profile.updatedAt = Date.now();
         await profile.save();
 
-        console.log("✅ Resume URL saved:", resumeUrl);
+        console.log("✅ Resume URL:", result.secure_url);
         res.redirect("/admin");
     } catch (err) {
-        console.error("❌ Resume link error:", err.message);
+        console.error("❌ Resume upload error:", err.message);
         res.redirect("/admin");
     }
 });

@@ -20,21 +20,20 @@
       </form>
     </div>
 
-    <!-- Resume Link -->
+    <!-- Resume Upload -->
     <div class="admin-form-box">
       <h2>📄 Resume</h2>
       <% if (profile && profile.resumeUrl) { %>
-        <a href="<%= profile.resumeUrl %>" target="_blank" class="ct-info-value">✅ Resume linked — click to view</a>
+        <a href="<%= profile.resumeUrl %>" target="_blank" class="ct-info-value">✅ Resume uploaded — click to view</a>
       <% } else { %>
         <div class="admin-no-photo">No resume linked yet</div>
       <% } %>
-      <form action="/admin/upload/resume-link" method="POST" class="admin-form" style="margin-top:1rem;">
+      <form action="/admin/upload/resume" method="POST" enctype="multipart/form-data" class="admin-form" style="margin-top:1rem;">
         <div class="ct-form-group">
-          <label>Paste Google Drive Preview Link</label>
-          <input type="url" name="resumeUrl" placeholder="https://drive.google.com/file/d/.../preview" required
-            value="<%= profile && profile.resumeUrl ? profile.resumeUrl : '' %>" />
+          <label>Choose Resume (PDF, JPG, JPEG, PNG, WEBP)</label>
+          <input type="file" name="resume" accept="application/pdf,image/jpeg,image/png,image/webp" required />
         </div>
-        <button type="submit" class="btn-admin-submit">💾 Save Resume Link</button>
+        <button type="submit" class="btn-admin-submit">⬆ Upload Resume</button>
       </form>
     </div>
 
